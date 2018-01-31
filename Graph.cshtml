@@ -1,0 +1,13 @@
+﻿@using WebMatrix.Data;
+@{
+    var db = Database.Open("KCHitterDADFinalContext");
+    var data = db.Query("SELECT PlayerID, TotalHits FROM Sessions");
+    var myChart = new Chart(width: 1200, height: 600, theme: ChartTheme.Vanilla3D)
+        .AddTitle("Players Stats")
+        .AddSeries("Default",
+        xValue: data, xField: "PlayerID",
+        yValues: data, yFields: "TotalHits")
+        .Write();
+}
+
+<h2>ChartDataQuery</h2>
